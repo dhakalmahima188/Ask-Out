@@ -31,8 +31,16 @@ function Navbar() {
         setInputUrl("");
     }
 
+    // const  openNav = () => {
+    //     return(   
+    //     document.getElementById("mySidenav").style.width = "250px"
+    //       )
+      
+    //   }
+
     return (
         <div className="askout_Header">
+            <button className="w3-button w3-teal w3-xlarge"  >&#9776;</button>
             <div className="askout_Header_logo">
                 {/* <img src={logo}/> */}
             </div>
@@ -114,6 +122,8 @@ function Navbar() {
             </div>
         </div>
     )
+ 
 }
+
 
 export default Navbar;

@@ -56,7 +56,7 @@ function Login() {
                     {/* <p style={{color: 'lightcoral', fontSize: '25px'}}>
                         Handcrafted with ❤ by {" "}
                     </p> */}
-                    <h3></h3>
+                   
                 </div>
                 <div className="login_auth">
                     <div className="login_authOptions">

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 
 .login{
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,6 +49,7 @@
 }
 
 .login_authOptions{
+
     display: flex;
     flex: 0.5;
     flex-direction: column;
@@ -206,11 +208,4 @@
 .login_footer > p:hover{
     text-decoration: underline;
 }
-
-
-
-
-
-
-
 
