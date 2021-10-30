@@ -1,83 +1,36 @@
 import "./register.css";
 import Add from "@material-ui/icons/Add";
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-function Register() {
-    const [inputFields, setInputFields] = useState([
-        { id: uuidv4(), email: '' },
-      ]);
-    
-     
-      const handleChangeInput = (id, event) => {
-        const newInputFields = inputFields.map(i => {
-          if(id === i.id) {
-            i[event.target.name] = event.target.value
-          }
-          return i;
-        })
-        
-        setInputFields(newInputFields);
-      }
-      const handleAddFields = () => {
-        setInputFields([...inputFields, { id: uuidv4(),  email: '' }])
-      }
-    
-
-    
-    
-  
+function Workspace() {
+  const submits = () => {
+    console.log("Submitted");
+  };
 
   return (
     <div className="register">
       <div className="login_container">
         <div className="login_desc">
-          <p>Register Your Workplace</p>
+          <p>Register Your Email</p>
         </div>
 
-        <div className="login_authOptions">
-          <h3>Enter the name of your Workplace</h3>
+        <h3>Please Enter the credentials:</h3>
 
-          <div className="login_inputFields">
+        <div className="login_inputField">
+          <input name="email" placeholder="Email" variant="filled" />
+          <input name="password" placeholder="Password" type="password" />
+          <input name="name" placeholder="Anynonymous name:" type="text" />
 
-          <input
-              name="workplace"
-            
-            
-            />
-          </div>
-          
-        </div>
-        <div className="login_emailPass">
-          <h3>Enter the email of Colllaborators.</h3>
+          <select name="tag" id="tag">
+            <option value="IT">IT</option>
+            <option value="FINANCE">FINANCE</option>
+            <option value="HR">HR</option>
+          </select>
 
-          <div className="login_inputField">
-        
-          
-           
-        { inputFields.map(inputField => (
-          <div className="login_inputField" key={inputField.id}>
-            <input
-              name="email"
-              placeholder="Email"
-              variant="filled"
-              value={inputField.email}
-              onChange={event => handleChangeInput(inputField.id, event)}
-            />
-           
-          
-          </div>
-        )) }
-       
-    
-          
-          </div>
-          <button onClick={handleAddFields}>
-            <Add />{" "}
-          </button>
-        </div>
+         
       </div>
+       <button onClick={submits}>Submit</button>
+        </div>
     </div>
   );
 }
 
-export default Register;
+export default Workspace;
