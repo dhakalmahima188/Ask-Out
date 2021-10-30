@@ -17,9 +17,18 @@
 .login_inputField > input{
 
    
-    outline: none;
-    border-radius: 5px;
+ 
+    height:20px;
+    border-radius: 5px ;
     background-color: rgb(202, 250, 250);
+}
+.login_inputFields > input
+{
+   
+ font-size: 20px;
+    height:40px;
+    border-radius: 5px;
+    background-color: rgb(233, 250, 202);
 }
 
 
