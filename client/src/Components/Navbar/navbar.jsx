@@ -64,7 +64,7 @@ function Navbar() {
                         overlay: {
                             width: 700,
                             height: 600,
-                            backgroundColor: "rgba(0,0,0,0.8)",
+                            backgroundColor: "green",
                             zIndex: "1000",
                             top: "50%",
                             left: "50%",

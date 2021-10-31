@@ -72,8 +72,7 @@ function Workspace() {
           
           </div>
           <button onClick={handleAddFields}>
-            <Add />{" "}
-          </button>
+            <Add /> Add </button>
         </div>
       </div>
     </div>

@@ -11,9 +11,9 @@ function App() {
     <>
       <div className="App">
         <Register/>
-      {/* <Workspace/> */}
+      {/* <Workspace/>  */}
       {/* <Login/> */}
-     {/* <Main/> */}
+    {/* <Main/> */}
       </div>
     </>
   );

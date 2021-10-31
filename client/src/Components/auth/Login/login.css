@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 
+
 .login{
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
-     /* background: url("https://3hwuuuxcz5o651g144s0kw10-wpengine.netdna-ssl.com/wp-content/uploads/2016/07/G3M_Wheres_Waldo.jpg"); */
+     background: url("./purple3.png");
 }
 
 .login_container{
@@ -48,46 +49,36 @@
 }
 
 .login_authOptions{
+    
     display: flex;
     flex: 0.5;
     flex-direction: column;
-    padding: 20px;
+    padding: 2px;
     border-right: 1px solid lightgray;
+    
 }
 
 .login_authOption{
-    display: flex;
     align-items: center;
     padding: 7px;
-    margin-bottom: 15px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    cursor: pointer;
+    height:300px;
 }
 
 .login_authOption:hover{
-    background-color: rgb(256,256,256);
+    background-color: rgb(250, 211, 250);
 }
 
-.login_authOption > img{
-    height: 30px;
+/* .login_authOption > img{
+    height: 300px;
     object-fit: contain;
-}
+} */
 
 .login_authOption > p{
     margin-left: 11px;
 }
-
-.login_authDesc{
-    display: flex;
-    align-items: center;
-    padding: 7px;
-    margin-bottom: 15px;
-}
-
-.login_authDesc > p {
-    font-size: small;
-    color: gray;
+.back{
+    background-color:blueviolet;
+    height:100%
 }
 
 .login_emailPass{
@@ -97,7 +88,15 @@
     padding: 20px;
     flex: 0.5;
     margin-left: 20px;
+    float:right;
 }
+/* .sideimg{
+  
+    display:block;
+    float:right;
+    height:100%;
+    width:20%;
+} */
 
 .login_label > h4{
     padding: 5px;
@@ -118,7 +117,7 @@
     width: 100%;
     outline: none;
     border: none;
-    background-color: rgb(236,236,236);
+    background-color: rgb(112, 28, 28);
 }
 
 .login_forgot{
@@ -143,11 +142,13 @@
     border-radius: 5px;
     border: none;
     outline: none;
-    background-color: lightcoral;
+    background-color: rgb(226, 167, 228);
     color: white;
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
+    height:30px;
+    text-align: center;
 }
 
 .login_emailPass > button{

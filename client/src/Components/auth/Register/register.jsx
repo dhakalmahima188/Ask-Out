@@ -1,4 +1,5 @@
 import "./register.css";
+import React from 'react';
 import Add from "@material-ui/icons/Add";
 function Workspace() {
   const submits = () => {
