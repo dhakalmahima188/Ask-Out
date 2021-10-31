@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-     background: url("./purple3.png");
+     background: url("../../../images/purple3.png");
 }
 
 .login_container{

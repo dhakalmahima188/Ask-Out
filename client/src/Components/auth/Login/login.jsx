@@ -1,10 +1,8 @@
 import { ArrowForwardIos } from '@material-ui/icons'
 // import logo from '../../images/ask-out logo.png';
 import React, { useState } from 'react';
-import './workspace.jpg';
 import './login.css';
 import Add from '@material-ui/icons/Add';
-import background from "./purple.png";
 
 
 function Login() {
