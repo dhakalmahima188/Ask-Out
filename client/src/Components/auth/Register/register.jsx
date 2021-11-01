@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import "./register.css";
 import Add from "@material-ui/icons/Add";
 function Workspace() {
