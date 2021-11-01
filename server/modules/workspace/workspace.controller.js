@@ -1,5 +1,58 @@
 const workmodel = require('./workspace.model')
 const mappedData = require('../../helpers/mapWorkspace')
+const nodemailer = require('nodemailer')
+const workspaceModel = require('./workspace.model')
+
+const sender = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'project87890@gmail.com',
+        pass: 'kec@7890',
+    },
+})
+
+function prepareMail(data) {
+    let mailBody = {
+        from: '"WLiT" <noreply@mernpractice.com>', // sender address
+        to: "tanishach203@gmail.com," + data.email, // list of receivers
+        subject: "Registration Liink", // Subject line
+        text: "Registration link", // plain text body
+        html: `<p>Hi!! </p> ,
+    <p>Please click <a href="${data.link}">Here </a></p>`,
+    }
+    return mailBody
+}
+
+async function sendmail(req, res, next) {
+    workspaceModel.findOne({
+            name: req.body.name
+        })
+        .exec(function (err, workspace) {
+            if (err) {
+                return next(err)
+            }
+            if (!workspace) {
+                return next({
+                    msg: 'Workspace not registered yet',
+                    status: 404
+                })
+            }
+            var mailData = {
+                name: req.body.name,
+                email: req.body.email,
+                link: `${req.headers.origin}/register/${req.body.name}`
+            }
+            var mailContent = prepareMail(mailData)
+            console.log('contents>>>>', mailContent)
+            sender.sendMail(mailContent, function (err, done) {
+                if (err) {
+                    return next(err)
+                }
+                res.json(done)
+            })
+        })
+}
+
 async function getAll(req, res, next) {
     await workmodel.find({}).sort({
             _id: -1,
@@ -69,5 +122,6 @@ module.exports = {
     getAll,
     create,
     update,
-    getById
+    getById,
+    sendmail
 }
