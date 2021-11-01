@@ -1,7 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 
 .register{
+<<<<<<< HEAD
     background-color: rgb(121, 32, 238);
+=======
+    background-color: rgb(174, 112, 216);
+>>>>>>> origin/smritiUI
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,7 +27,11 @@
     margin-bottom: 10px;
        height:20px;
        border-radius: 5px ;
+<<<<<<< HEAD
        background-color: rgb(202, 250, 250);
+=======
+       background-color: rgb(241, 219, 241);
+>>>>>>> origin/smritiUI
    }
    
 
@@ -31,6 +39,7 @@
 button{
 margin-left:5px;
     border-radius: 5px;
+<<<<<<< HEAD
     background-color: rgb(33, 235, 77); 
     cursor: pointer;
     height:20px;
@@ -41,3 +50,11 @@ margin-left:5px;
 
 
 
+=======
+    background-color: rgb(188, 178, 233); 
+    color:white;
+    height:30px;
+    width:60px;}
+
+
+>>>>>>> origin/smritiUI
