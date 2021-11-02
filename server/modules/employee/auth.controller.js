@@ -55,7 +55,7 @@ async function register(req, res, next) {
     if (err) return next(err)
     if (!data) {
       return next({
-        msg: "Workspce not found",
+        msg: "Workspace not found",
         status: 404
       })
     }
