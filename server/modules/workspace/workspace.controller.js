@@ -2,12 +2,13 @@ const workmodel = require('./workspace.model')
 const mappedData = require('../../helpers/mapWorkspace')
 const nodemailer = require('nodemailer')
 const workspaceModel = require('./workspace.model')
+const env = require("../../configs/envConfig")
 
 const sender = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'project87890@gmail.com',
-        pass: 'kec@7890',
+        user: env.email,
+        pass: env.password,
     },
 })
 
@@ -15,9 +16,9 @@ function prepareMail(data) {
     let mailBody = {
         from: '"WLiT" <noreply@mernpractice.com>', // sender address
         to: "tanishach203@gmail.com," + data.email, // list of receivers
-        subject: "Registration Liink", // Subject line
+        subject: "Registration Link", // Subject line
         text: "Registration link", // plain text body
-        html: `<p>Hi!! </p> ,
+        html: `<p>Hi!! </p> 
     <p>Please click <a href="${data.link}">Here </a></p>`,
     }
     return mailBody
