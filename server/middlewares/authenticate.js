@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('./../configs/token.js');
-const UserModel=require("../modules/employee/users.model")
-module.exports = function(req, res, next) {
+const UserModel = require("../modules/employee/users.model")
+module.exports = function (req, res, next) {
     let token;
     if (req.headers['token'])
         token = req.headers['token']
@@ -12,17 +12,17 @@ module.exports = function(req, res, next) {
     if (req.query.token)
         token = req.query.token
     if (token) {
-        jwt.verify(token, config.jwtSecret, function(err, decoded) {
+        jwt.verify(token, config.jwtSecret, function (err, decoded) {
             if (err) {
                 return next(err);
             }
             console.log('decoded value >>', decoded);
-            UserModel.findById(decoded._id, function(err, user) {
+            UserModel.findById(decoded._id, function (err, user) {
                 if (err) {
                     return next(err);
                 }
                 if (user) {
-                    req.loggedInUser = user; 
+                    req.loggedInUser = user;
                     next();
                 } else {
                     next({

@@ -1,6 +1,5 @@
-//get post put
 const usersmodel = require('./users.model')
-const mappedData = require('../../helpers/mapEmployee')
+
 async function getAll(req, res, next) {
     await usersmodel.find({}).sort({
             _id: -1,
@@ -49,11 +48,6 @@ async function getById(req, res, next) {
 //       })
 // }
 
-
-
-
-
-  
 module.exports = {
     getAll,
     getById,

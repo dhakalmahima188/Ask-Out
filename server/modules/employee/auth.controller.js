@@ -1,12 +1,8 @@
-//login
-//register
-
-
-
 const UserModel = require("./users.model");
+const WorkModel = require("../workspace/workspace.model")
 const mapUserReq = require("./../../helpers/mapEmployee");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");     //jsonwebtoken documentation
+const jwt = require("jsonwebtoken");
 const configs = require("./../../configs/token");
 
 function createToken(data) {
@@ -52,28 +48,33 @@ async function login(req, res, next) {
   });
 }
 
-
-
 async function register(req, res, next) {
-  const newUser = new UserModel();
-  const newMappedUser = mapUserReq(newUser, req.body);
-  const salt = await bcrypt.genSalt(10);    //encryption
-  
- newMappedUser.password = await bcrypt.hash(req.body.password, salt);
-  
-  newMappedUser.workspace_id=req.params.id;
-
-
-  await newMappedUser
-    .save()
-    .then(function (data) {
-      res.json(data);
-      console.log("Successfully Registered");
-    })
-    .catch(function (err) {
-      next(err);
-      console.log("error", err);
-    });
+  await WorkModel.findOne({
+    name: req.body.name
+  }).exec(async function (err, data) {
+    if (err) return next(err)
+    if (!data) {
+      return next({
+        msg: "Workspce not found",
+        status: 404
+      })
+    }
+    const newUser = new UserModel();
+    const newMappedUser = mapUserReq(newUser, req.body);
+    const salt = await bcrypt.genSalt(10);
+    newMappedUser.password = await bcrypt.hash(req.body.password, salt);
+    newMappedUser.workspace_id = data._id;
+    await newMappedUser
+      .save()
+      .then(function (data) {
+        res.json(data);
+        console.log("Successfully Registered");
+      })
+      .catch(function (err) {
+        next(err);
+        console.log("error", err);
+      });
+  })
 }
 
 module.exports = {

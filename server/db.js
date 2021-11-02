@@ -6,7 +6,7 @@ mongoose.connect(dbConfig.conxnUrl + '/' + dbConfig.dbName, {
     useNewUrlParser: true
 }, function (err, done) {
     if (err) {
-        console.log('connecting error',err)
+        console.log('connecting error', err)
     } else {
         console.log('Database connection success')
     }
