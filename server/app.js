@@ -2,7 +2,7 @@
 const express = require("express"),
     app = express();
 const morgan = require("morgan");
-
+const cors = require('cors')
 // Db
 require("./db");
 
@@ -11,6 +11,8 @@ const apiRoute = require("./routes/api.routing.js");
 
 // Load third-party middleware
 app.use(morgan("dev"));
+
+app.use(cors()) //accept every incoming request
 
 // Inbuilt middleware for parsing incoming data
 app.use(express.urlencoded({

@@ -1,72 +1,69 @@
 @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 
-
-.login{
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-     background: url("../../../images/purple3.png");
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url("../../../images/purple3.png");
 }
 
-.login_container{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    width: 700px;
-    background-color: rgb(255,255,255);
-    border-radius: 30px;
+.login_container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 700px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
 }
 
-.login_logo{
-    display: flex;
-    justify-content: center;
+.login_logo {
+  display: flex;
+  justify-content: center;
 }
 
-.login_desc{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.login_desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.login_desc > h3{
-    margin-top: 10px;
-    text-align: center;
-    font-size: xx-large;
-    font-family: "Cedarville Cursive", cursive;
+.login_desc > h3 {
+  margin-top: 10px;
+  text-align: center;
+  font-size: xx-large;
+  font-family: "Cedarville Cursive", cursive;
 }
 
-.login_desc > p{
-    color: gray;
-    text-align: center;
-    font-weight: 500;
-    font-size: 22px;
+.login_desc > p {
+  color: gray;
+  text-align: center;
+  font-weight: 500;
+  font-size: 22px;
 }
 
-.login_auth{
-    display: flex;
-    margin-top: 50px;
+.login_auth {
+  display: flex;
+  margin-top: 50px;
 }
 
-.login_authOptions{
-    
-    display: flex;
-    flex: 0.5;
-    flex-direction: column;
-    padding: 2px;
-    border-right: 1px solid lightgray;
-    
+.login_authOptions {
+  display: flex;
+  flex: 0.5;
+  flex-direction: column;
+  padding: 2px;
+  border-right: 1px solid lightgray;
+  text-decoration: none;
 }
 
-.login_authOption{
-    align-items: center;
-    padding: 7px;
-    height:300px;
+.login_authOption {
+  align-items: center;
+  padding: 7px;
+  height: 300px;
 }
 
-.login_authOption:hover{
-    background-color: rgb(250, 211, 250);
+.login_authOption:hover {
+  background-color: rgb(250, 211, 250);
 }
 
 /* .login_authOption > img{
@@ -74,22 +71,22 @@
     object-fit: contain;
 } */
 
-.login_authOption > p{
-    margin-left: 11px;
+.login_authOption > p {
+  margin-left: 11px;
 }
-.back{
-    background-color:blueviolet;
-    height:100%
+.back {
+  background-color: blueviolet;
+  height: 100%;
 }
 
-.login_emailPass{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-    flex: 0.5;
-    margin-left: 20px;
-    float:right;
+.login_emailPass {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  flex: 0.5;
+  margin-left: 20px;
+  float: right;
 }
 /* .sideimg{
   
@@ -99,113 +96,112 @@
     width:20%;
 } */
 
-.login_label > h4{
-    padding: 5px;
+.login_label > h4 {
+  padding: 5px;
 }
 
-.login_inputFields{
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
+.login_inputFields {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
 }
 
-.login_inputField{
-    padding: 5px;
+.login_inputField {
+  padding: 5px;
 }
 
-.login_inputField > input{
-    padding: 10px;
-    width: 100%;
-    outline: none;
-    border: none;
-    background-color: rgb(112, 28, 28);
+.login_inputField > input {
+  padding: 10px;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: rgb(112, 28, 28);
 }
 
-.login_forgot{
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.login_forgot {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.login_forgot > small{
-    color: gray;
-    cursor: pointer;
+.login_forgot > small {
+  color: gray;
+  cursor: pointer;
 }
 
-.login_forgot > small:hover{
-    color: blue;
-    text-decoration: underline;
+.login_forgot > small:hover {
+  color: blue;
+  text-decoration: underline;
 }
 
-.login_forgot > button{
-    padding: 9px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    background-color: rgb(226, 167, 228);
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    height:30px;
-    text-align: center;
+.login_forgot > button {
+  padding: 9px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: rgb(226, 167, 228);
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  height: 30px;
+  text-align: center;
 }
 
-.login_emailPass > button{
-    padding: 9px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    background-color: lightcoral;
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    margin-top: 10px;
+.login_emailPass > button {
+  padding: 9px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: lightcoral;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-.login_lang{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
-    margin-top: 30px;
-    padding: 10px;
+.login_lang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  margin-top: 30px;
+  padding: 10px;
 }
 
-.login_lang{
-    color: gray;
-    margin-right: 5px;
-    cursor: pointer;
-    font-size: 13px;
+.login_lang {
+  color: gray;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 13px;
 }
 
-.login_lang > p:hover{
-    color: gray;
-    margin-top: 5px;
-    text-decoration: underline;
+.login_lang > p:hover {
+  color: gray;
+  margin-top: 5px;
+  text-decoration: underline;
 }
 
 .login_lang > .MuiSvgIcon-root {
-    color: gray;
+  color: gray;
 }
 
 .login_footer {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.login_footer > p{
-    color: gray;
-    font-size: small;
-    cursor: pointer;
+.login_footer > p {
+  color: gray;
+  font-size: small;
+  cursor: pointer;
 }
 
-.login_footer > p:hover{
-    text-decoration: underline;
+.login_footer > p:hover {
+  text-decoration: underline;
 }
-

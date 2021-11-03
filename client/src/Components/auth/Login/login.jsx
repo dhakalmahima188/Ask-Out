@@ -14,7 +14,10 @@ function Login() {
         <div className="login_auth">
           <div className="login_authOptions">
             <div className="login_authOption">
-              <Add /> Create Workspace
+              <Link to="/workspace">
+                {" "}
+                <Add /> Create Workspace
+              </Link>{" "}
             </div>
           </div>
           <div className="login_emailPass">
@@ -41,7 +44,7 @@ function Login() {
               </div>
             </div>
             <div className="login_forgot">
-              <small>Forgot Password</small>
+              {/* <small>Forgot Password</small> */}
               <button
                 type="submit"
                 // onClick={handleLogin}

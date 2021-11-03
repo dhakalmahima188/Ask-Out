@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import "./register.css";
-import Add from "@material-ui/icons/Add";
-function Workspace() {
+function Register() {
   const submits = () => {
     console.log("Submitted");
   };
@@ -26,13 +25,11 @@ function Workspace() {
             <option value="FINANCE">FINANCE</option>
             <option value="HR">HR</option>
           </select>
-
-         
-      </div>
-       <button onClick={submits}>Submit</button>
         </div>
+        <button onClick={submits}>Submit</button>
+      </div>
     </div>
   );
 }
 
-export default Workspace;
+export default Register;

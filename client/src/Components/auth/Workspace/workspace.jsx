@@ -1,60 +1,119 @@
 import "./workspace.css";
 import Add from "@material-ui/icons/Add";
 import React, { useState } from "react";
-
-import { v4 as uuidv4 } from "uuid";
-function Workspace() {
-  const [inputFields, setInputFields] = useState([{ id: uuidv4(), email: "" }]);
-
-  const handleChangeInput = (id, event) => {
-    const newInputFields = inputFields.map((i) => {
-      if (id === i.id) {
-        i[event.target.name] = event.target.value;
-      }
-      return i;
-    });
-
-    setInputFields(newInputFields);
-  };
-  const handleAddFields = () => {
-    setInputFields([...inputFields, { id: uuidv4(), email: "" }]);
+import { Link } from "react-router-dom";
+import httpClient from "../../../Utils/httpClient";
+function Workspace(props) {
+  const [data, setdata] = useState({ name: "" });
+  const [inputList, setInputList] = useState([{ email: "" }]);
+  const [created_workspace, setCreate] = useState(false);
+  const [msg, setMsg] = useState(false);
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...inputList];
+    list[index][name] = value;
+    setInputList(list);
+    console.log(inputList);
   };
 
+  const handleAddClick = () => {
+    setInputList([...inputList, { email: "" }]);
+  };
+
+  const handleWorkChange = (e) => {
+    const { name, value } = e.target;
+    setdata(() => ({
+      [name]: value,
+    }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    httpClient
+      .POST("workspace", data, {})
+      .then((response) => {
+        setCreate(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const handleSend = (e) => {
+    e.preventDefault();
+    httpClient
+      .POST(
+        "workspace/add",
+        {
+          email: inputList.map(({ email }) => email),
+          name: Object.values(data),
+        },
+        {}
+      )
+      .then((response) => {
+        setMsg(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  let content = created_workspace ? (
+    !msg ? (
+      <>
+        <div className="login_emailPass">
+          <div className="login_inputField">
+            {inputList.map((x, i) => {
+              return (
+                <>
+                  {" "}
+                  <h3>{i === 0 ? "Enter your email" : `Teammate ${i}`}</h3>
+                  <div className="login_inputField">
+                    <input
+                      name="email"
+                      placeholder={
+                        i === 0
+                          ? "Enter your email"
+                          : `Enter your teammate's email`
+                      }
+                      variant="filled"
+                      value={x.email}
+                      onChange={(e) => handleInputChange(e, i)}
+                    />
+                  </div>
+                  {inputList.length - 1 === i && (
+                    <button onClick={handleAddClick}>
+                      {" "}
+                      Click to add people
+                      <Add />
+                    </button>
+                  )}
+                </>
+              );
+            })}
+          </div>
+        </div>
+        <button onClick={handleSend}> Submit</button>
+      </>
+    ) : (
+      <h3>Please Check Your Email!!</h3>
+    )
+  ) : (
+    <>
+      <div className="login_desc">
+        <Link to="/">Go Back</Link>
+        <p>Register Your Workplace</p>
+      </div>
+      <div className="login_authOptions">
+        <h3>Enter the name of your Workplace</h3>
+        <div className="login_inputFields">
+          <input name="name" onChange={handleWorkChange} />
+        </div>
+        <button onClick={handleSubmit}>Create</button>
+      </div>
+      <br />
+    </>
+  );
   return (
     <div className="register">
-      <div className="login_container">
-        <div className="login_desc">
-          <p>Register Your Workplace</p>
-        </div>
-
-        <div className="login_authOptions">
-          <h3>Enter the name of your Workplace</h3>
-
-          <div className="login_inputFields">
-            <input name="workplace" />
-          </div>
-        </div>
-        <div className="login_emailPass">
-          <h3>Enter the email of Colllaborators.</h3>
-
-          <div className="login_inputField">
-            {inputFields.map((inputField) => (
-              <div className="login_inputField" key={inputField.id}>
-                <input
-                  name="email"
-                  placeholder="Email"
-                  variant="filled"
-                  value={inputField.email}
-                  onChange={(event) => handleChangeInput(inputField.id, event)}
-                />
-              </div>
-            ))}
-          </div>
-          <button onClick={handleAddFields}>
-            <Add />{" "}
-          </button>
-        </div>
-      </div>
+      <div className="login_container">{content}</div>
     </div>
   );
 }
