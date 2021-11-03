@@ -3,16 +3,19 @@ import './feed.css';
 import AskoutBox from '../AskoutBox/askoutbox';
 import Post from './post.jsx';
 
-function Feed() {
+function Feed(props) {
 
     const [posts, setPosts] = useState([])
 
-    // useEffect(() => {
-    //     db.collection('questions').orderBy('timestamp', "desc").onSnapshot(snapshot => setPosts(snapshot.docs.map((doc) => (({
-    //         id: doc.id,
-    //         question: doc.data()
-    //     })))))
-    // }, [])
+    useEffect(() => {
+        // db.collection('questions').orderBy('timestamp', "desc").onSnapshot(snapshot => setPosts(snapshot.docs.map((doc) => (({
+        //     id: doc.id,
+        //     question: doc.data()
+        // })))))
+        const data = props.history.location.state?.username
+        console.log(data)
+
+    }, [])
 
     return (
         <div className="feed">

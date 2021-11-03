@@ -39,6 +39,9 @@ function Register(props) {
             : "Invalid email"
           : "Required field*";
         break;
+      case "tag":
+        errorMsg = data[name] ? "" : "Required field*";
+        break;
       default:
         break;
     }
@@ -69,7 +72,6 @@ function Register(props) {
       })
       .catch((err) => {
         console.log(err);
-        console.log();
       });
   };
 
