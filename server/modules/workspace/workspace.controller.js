@@ -41,7 +41,7 @@ async function sendmail(req, res, next) {
             var mailData = {
                 name: req.body.name,
                 email: req.body.email,
-                link: `${req.headers.origin}/register/${req.body.name}`
+                link: `${req.headers.origin}/register?q=${req.body.name}`
             }
             var mailContent = prepareMail(mailData)
             console.log('contents>>>>', mailContent)
