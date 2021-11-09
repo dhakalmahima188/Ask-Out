@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./login.css";
-import Add from "@material-ui/icons/Add";
 import { Link } from "react-router-dom";
 import httpClient from "../../../Utils/httpClient";
 
@@ -70,9 +69,9 @@ function Login(props) {
         <div className="login_auth">
           <div className="login_authOptions">
             <div className="login_authOption">
-              <Link to="/workspace">
+              <Link to="/workspace" style={{ textDecoration: "none" }}>
                 {" "}
-                <Add /> Create Workspace
+                <small className="works-btn"> Create Workspace</small>
               </Link>{" "}
             </div>
           </div>
@@ -105,10 +104,10 @@ function Login(props) {
                 />
               </div>
             </div>
-            {/* <div className="login_forgot"> */}
-            {/* <small>Forgot Password</small> */}
-            {btn}
-            {/* </div> */}
+            <div className="login_forgot">
+              {/* <small>Forgot Password</small> */}
+              {btn}
+            </div>
           </div>
         </div>
       </div>

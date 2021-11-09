@@ -17,31 +17,6 @@
   border-radius: 30px;
 }
 
-.login_logo {
-  display: flex;
-  justify-content: center;
-}
-
-.login_desc {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.login_desc > h3 {
-  margin-top: 10px;
-  text-align: center;
-  font-size: xx-large;
-  font-family: "Cedarville Cursive", cursive;
-}
-
-.login_desc > p {
-  color: gray;
-  text-align: center;
-  font-weight: 500;
-  font-size: 22px;
-}
-
 .login_auth {
   display: flex;
   margin-top: 50px;
@@ -53,7 +28,7 @@
   flex-direction: column;
   padding: 2px;
   border-right: 1px solid lightgray;
-  text-decoration: none;
+  margin-top: 80px;
 }
 
 .login_authOption {
@@ -66,14 +41,14 @@
   background-color: rgb(250, 211, 250);
 }
 
-/* .login_authOption > img{
-    height: 300px;
-    object-fit: contain;
-} */
-
-.login_authOption > p {
-  margin-left: 11px;
+.works-btn {
+  padding: 70px;
+  color: rgb(114, 51, 116);
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
 }
+
 .back {
   background-color: blueviolet;
   height: 100%;
@@ -88,15 +63,8 @@
   margin-left: 20px;
   float: right;
 }
-/* .sideimg{
-  
-    display:block;
-    float:right;
-    height:100%;
-    width:20%;
-} */
 
-.login_label > h4 {
+.login_label > h2 {
   padding: 5px;
 }
 
@@ -125,16 +93,6 @@
   justify-content: space-between;
 }
 
-.login_forgot > small {
-  color: gray;
-  cursor: pointer;
-}
-
-.login_forgot > small:hover {
-  color: blue;
-  text-decoration: underline;
-}
-
 .login_forgot > button {
   padding: 9px;
   border-radius: 5px;
@@ -160,48 +118,4 @@
   font-size: 15px;
   cursor: pointer;
   margin-top: 10px;
-}
-
-.login_lang {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
-  margin-top: 30px;
-  padding: 10px;
-}
-
-.login_lang {
-  color: gray;
-  margin-right: 5px;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.login_lang > p:hover {
-  color: gray;
-  margin-top: 5px;
-  text-decoration: underline;
-}
-
-.login_lang > .MuiSvgIcon-root {
-  color: gray;
-}
-
-.login_footer {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.login_footer > p {
-  color: gray;
-  font-size: small;
-  cursor: pointer;
-}
-
-.login_footer > p:hover {
-  text-decoration: underline;
 }
