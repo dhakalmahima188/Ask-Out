@@ -40,7 +40,7 @@ async function sendmail(req, res, next) {
             var mailData = {
                 name: req.body.name,
                 email: req.body.email,
-                link: `${req.headers.origin}/register/${req.body.name}`
+                link: `${req.headers.origin}/register?name=${req.body.name}`
             }
             var mailContent = prepareMail(mailData)
             console.log('contents>>>>', mailContent)
@@ -71,6 +71,7 @@ async function getById(req, res, next) {
         })
         .exec(function (err, data) {
             if (err) {
+                console.log(err)
                 return next(err);
             }
             if (!data) {

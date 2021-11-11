@@ -3,21 +3,13 @@ import './feed.css';
 import AskoutBox from '../AskoutBox/askoutbox';
 import Post from './post.jsx';
 
-function Feed(props) {
+function Feed() {
 
     const [posts, setPosts] = useState([])
 
-    useEffect(() => {
-        // db.collection('questions').orderBy('timestamp', "desc").onSnapshot(snapshot => setPosts(snapshot.docs.map((doc) => (({
-        //     id: doc.id,
-        //     question: doc.data()
-        // })))))
-        const data = props.history.location.state?.username
-        console.log(data)
-
-    }, [])
-
+    
     return (
+
         <div className="feed">
             <AskoutBox />
             {/* {
@@ -33,7 +25,8 @@ function Feed(props) {
                 ))
             } */}
         </div>
+        
     );
 }
 
-export default Feed
+export default Feed;

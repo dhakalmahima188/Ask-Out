@@ -39,6 +39,10 @@ const QuestionSchema = new Schema({
         type: String,
         default: "Active",
         enum: ['Active', 'Close']
+    },
+    "workspace_id": {
+        type: String,
+        required: true
     }
 }, {
     "writeConcern": {

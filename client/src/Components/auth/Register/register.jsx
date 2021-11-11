@@ -3,15 +3,23 @@ import httpClient from "../../../Utils/httpClient";
 import queryString from "query-string";
 
 import "./register.css";
+
 function Register(props) {
   const [value] = useState({
     name: Object.values(queryString.parse(props.location.search))[0],
   });
-  const defaultForm = { username: "", email: "", password: "", tag: "" };
+  const defaultForm = {
+    username: "",
+    email: "",
+    password: "",
+    tag: "",
+  };
   const [data, setdata] = useState({
     ...defaultForm,
   });
-  const [error, setError] = useState({ ...defaultForm });
+  const [error, setError] = useState({
+    ...defaultForm,
+  });
   const [valid, setValid] = useState(false);
 
   const handleChange = (e) => {
@@ -39,9 +47,6 @@ function Register(props) {
             : "Invalid email"
           : "Required field*";
         break;
-      case "tag":
-        errorMsg = data[name] ? "" : "Required field*";
-        break;
       default:
         break;
     }
@@ -51,7 +56,6 @@ function Register(props) {
     }));
     const errors = Object.values(error).filter((items) => items);
     setValid(errors.length === 0);
-    console.log(data);
   };
   const submits = (e) => {
     e.preventDefault();
@@ -68,6 +72,8 @@ function Register(props) {
         {}
       )
       .then((response) => {
+        localStorage.setItem("workspace", value.name);
+
         props.history.push("/");
       })
       .catch((err) => {
@@ -76,10 +82,10 @@ function Register(props) {
   };
 
   let btn = valid ? (
-    <button onClick={submits}>Submit</button>
+    <button onClick={submits}> Submit </button>
   ) : (
     <button disabled onClick={submits}>
-      Submit
+      Submit{" "}
     </button>
   );
 
@@ -87,16 +93,19 @@ function Register(props) {
     <div className="register">
       <div className="login_container">
         <div className="login_desc">
-          <p>Register Your Email</p>
+          <p> Register Your Email </p>{" "}
         </div>
-
-        <h3>Please Enter the credentials:</h3>
-
+        <h3> Please Enter the credentials: </h3>
         <div className="login_inputField">
-          <small className="text-danger" style={{ color: "red" }}>
-            {error.email}
+          <small
+            className="text-danger"
+            style={{
+              color: "red",
+            }}
+          >
+            {" "}
+            {error.email}{" "}
           </small>
-
           <input
             name="email"
             placeholder="Email"
@@ -104,20 +113,30 @@ function Register(props) {
             onChange={handleChange}
             autocomplete="off"
           />
-          <small className="text-danger" style={{ color: "red" }}>
-            {error.password}
+          <small
+            className="text-danger"
+            style={{
+              color: "red",
+            }}
+          >
+            {" "}
+            {error.password}{" "}
           </small>
-
           <input
             name="password"
             placeholder="Password"
             type="password"
             onChange={handleChange}
-          />
-          <small className="text-danger" style={{ color: "red" }}>
-            {error.username}
+          />{" "}
+          <small
+            className="text-danger"
+            style={{
+              color: "red",
+            }}
+          >
+            {" "}
+            {error.username}{" "}
           </small>
-
           <input
             name="username"
             placeholder="Anynonymous Username:"
@@ -125,21 +144,26 @@ function Register(props) {
             onChange={handleChange}
             autocomplete="off"
           />
-          <small className="text-danger" style={{ color: "red" }}>
-            {error.tag}
+          <small
+            className="text-danger"
+            style={{
+              color: "red",
+            }}
+          >
+            {" "}
+            {error.tag}{" "}
           </small>
-
           <select name="tag" id="tag" onChange={handleChange}>
             <option value="none" selected disabled hidden>
-              Select a Tag
-            </option>
-            <option value="IT">IT</option>
-            <option value="FINANCE">FINANCE</option>
-            <option value="HR">HR</option>
-          </select>
-        </div>
-        {btn}
-      </div>
+              Select a Tag{" "}
+            </option>{" "}
+            <option value="IT"> IT </option>{" "}
+            <option value="FINANCE"> FINANCE </option>{" "}
+            <option value="HR"> HR </option>{" "}
+          </select>{" "}
+        </div>{" "}
+        {btn}{" "}
+      </div>{" "}
     </div>
   );
 }

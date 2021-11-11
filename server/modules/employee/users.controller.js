@@ -48,8 +48,30 @@ async function getById(req, res, next) {
 //       })
 // }
 
+async function getbyname(req, res, next) {
+    await usersmodel.findOne({
+            username: req.body.username
+        })
+        .exec(async function (err, data) {
+            if (err) {
+                console.log(err)
+                return next(err);
+            }
+            if (data) {
+                res.json(data)
+            } else {
+                return next({
+                    msg: "Not Found",
+                    status: 404
+                })
+            }
+        })
+}
+
+
 module.exports = {
     getAll,
     getById,
+    getbyname
     //getByTag
 }

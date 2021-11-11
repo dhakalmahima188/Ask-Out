@@ -37,21 +37,12 @@
 .askout_Header_input {
     display: flex;
     align-items: center;
-    border: 2px solid #554D5E;
     padding: 5px;
     border-radius: 5px;
+    margin-left: 150px;
 }
 
-.askout_Header_input > input {
-    background-color: transparent;
-    outline: none;
-    border: none;
-    color: rgba(49,49,49);
-}
 
-.askout_Header_input > .MuiSvgIcon-root {
-    color: #554D5E;
-}
 
 .askout_Header_extra {
     display: flex;
