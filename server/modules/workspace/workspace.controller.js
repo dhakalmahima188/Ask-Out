@@ -1,7 +1,6 @@
 const workmodel = require('./workspace.model')
 const mappedData = require('../../helpers/mapWorkspace')
 const nodemailer = require('nodemailer')
-const workspaceModel = require('./workspace.model')
 const env = require("../../configs/envConfig")
 
 const sender = nodemailer.createTransport({
@@ -25,7 +24,7 @@ function prepareMail(data) {
 }
 
 async function sendmail(req, res, next) {
-    workspaceModel.findOne({
+    workmodel.findOne({
             name: req.body.name
         })
         .exec(function (err, workspace) {
@@ -41,7 +40,7 @@ async function sendmail(req, res, next) {
             var mailData = {
                 name: req.body.name,
                 email: req.body.email,
-                link: `${req.headers.origin}/register?q=${req.body.name}`
+                link: `${req.headers.origin}/register/${req.body.name}`
             }
             var mailContent = prepareMail(mailData)
             console.log('contents>>>>', mailContent)
