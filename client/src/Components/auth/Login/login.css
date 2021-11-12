@@ -1,4 +1,6 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
+
+
 
 .login {
   display: flex;
@@ -13,13 +15,38 @@
   flex-direction: column;
   padding: 20px;
   width: 700px;
+  height:400px;
   background-color: rgb(255, 255, 255);
   border-radius: 30px;
 }
 
+.login_logo {
+  display: flex;
+  justify-content: center;
+}
+
+.login_desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login_desc > h3 {
+  margin-top: 10px;
+  text-align: center;
+  font-size: xx-large;
+  font-family: "Cedarville Cursive", cursive;
+}
+
+.login_desc > p {
+  color: gray;
+  text-align: center;
+  font-weight: 500;
+  font-size: 22px;
+}
+
 .login_auth {
   display: flex;
-  margin-top: 50px;
 }
 
 .login_authOptions {
@@ -28,12 +55,14 @@
   flex-direction: column;
   padding: 2px;
   border-right: 1px solid lightgray;
-  margin-top: 80px;
+  text-decoration: none;
 }
 
 .login_authOption {
   align-items: center;
   padding: 7px;
+  width: 100%;
+  margin-top:30px;
   height: 300px;
 }
 
@@ -41,14 +70,14 @@
   background-color: rgb(250, 211, 250);
 }
 
-.works-btn {
-  padding: 70px;
-  color: rgb(114, 51, 116);
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
-}
+/* .login_authOption > img{
+    height: 300px;
+    object-fit: contain;
+} */
 
+.login_authOption > p {
+  margin-left: 11px;
+}
 .back {
   background-color: blueviolet;
   height: 100%;
@@ -63,8 +92,15 @@
   margin-left: 20px;
   float: right;
 }
+/* .sideimg{
+  
+    display:block;
+    float:right;
+    height:100%;
+    width:20%;
+} */
 
-.login_label > h2 {
+.login_label > h4 {
   padding: 5px;
 }
 
@@ -93,7 +129,17 @@
   justify-content: space-between;
 }
 
-.login_forgot > button {
+.login_forgot > small {
+  color: gray;
+  cursor: pointer;
+}
+
+.login_forgot > small:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.login_forgot {
   padding: 9px;
   border-radius: 5px;
   border: none;
@@ -107,6 +153,17 @@
   text-align: center;
 }
 
+.login_btn >button{
+  color:white;
+  background-color:blue;
+  border-radius: 5% !important;
+  padding:3px;
+  justify-content: center;
+  align-items: center;
+  height:38px;
+  margin-left:40%;
+  width:100px;
+}
 .login_emailPass > button {
   padding: 9px;
   border-radius: 5px;
@@ -118,4 +175,48 @@
   font-size: 15px;
   cursor: pointer;
   margin-top: 10px;
-} */
+}
+
+.login_lang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.login_lang {
+  color: gray;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.login_lang > p:hover {
+  color: gray;
+  margin-top: 5px;
+  text-decoration: underline;
+}
+
+.login_lang > .MuiSvgIcon-root {
+  color: gray;
+}
+
+.login_footer {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.login_footer > p {
+  color: gray;
+  font-size: small;
+  cursor: pointer;
+}
+
+.login_footer > p:hover {
+  text-decoration: underline;
+}

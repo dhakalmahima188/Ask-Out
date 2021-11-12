@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import httpClient from "../../../Utils/httpClient";
 import queryString from "query-string";
+import image from "./ques.png";
 
 import "./register.css";
 
@@ -90,13 +91,16 @@ function Register(props) {
   );
 
   return (
-    <div className="register">
-      <div className="login_container">
-        <div className="login_desc">
-          <p> Register Your Email </p>{" "}
+    <div className="register-form">
+      <div className="reg_container">
+        <div className="image">
+          <img src={image} height="350px" width="300px" alt="question" />
         </div>
-        <h3> Please Enter the credentials: </h3>
-        <div className="login_inputField">
+        <div className="reg_form">
+          <div className="reg-desc">
+        <p>REGISTER</p>
+        </div>
+        <div className="register_inputField">
           <small
             className="text-danger"
             style={{
@@ -164,6 +168,7 @@ function Register(props) {
         </div>{" "}
         {btn}{" "}
       </div>{" "}
+    </div>
     </div>
   );
 }

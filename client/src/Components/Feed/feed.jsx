@@ -17,17 +17,14 @@ function Feed() {
         console.log(err);
       });
   }, [dataid]);
-  console.log('post',posts);
   return (
     <div className="feed">
       {posts.map((item) => (
         <Post
           id={item._id}
-          key={item._id}
           Id={item.employee_id}
           question={item.description}
           timestamp={item.createdAt}
-          replies={item.replies}
         />
       ))}
     </div>

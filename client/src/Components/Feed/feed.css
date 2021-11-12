@@ -71,7 +71,7 @@
   cursor: pointer;
   transform: scale(1.1);
 }
-
+/* 
 .post_footer {
   display: flex;
   align-items: center;
@@ -103,7 +103,7 @@
   color: lightcoral;
   margin-right: 40px;
   cursor: pointer;
-}
+} */
 
 .post_footerRight {
   margin-left: auto;
@@ -190,4 +190,7 @@
 
 .modal_button > .add:hover {
   transform: scale(1.1);
+}
+.post_btnAnswer{
+background-color: #554d5e;
 }

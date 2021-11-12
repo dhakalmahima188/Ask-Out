@@ -143,7 +143,8 @@ async function postAnswer(req, res, next) {
         $push: {
           "replies": {
             "employee_id": req.loggedInUser.id,
-            "answer": req.body.answer
+            "answer": req.body.answer,
+            "employee_name":req.body.employee_name
           }
         }
       })

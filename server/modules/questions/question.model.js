@@ -10,6 +10,9 @@ const QuestionSchema = new Schema({
         "employee_id": {
             type: String,
         },
+        "employee_name":{
+            type:String,
+        },
         "answer": {
             type: String,
         },

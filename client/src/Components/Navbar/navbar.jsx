@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./navbar.css";
-import HomeIcon from "@material-ui/icons/Home";
 import { Avatar, Button } from "@material-ui/core";
 import httpClient from "../../Utils/httpClient";
 import Modal from "react-modal";
@@ -93,13 +92,7 @@ function Navbar() {
       <div className="askout_Header_logo">
         <h3>Ask-Out</h3>
       </div>
-      <div className="askout_Header_icons">
-        <div className="askout_Header_icon">
-          <HomeIcon />
-        </div>
-      </div>
-
-      <div className="askout_Header_input">Welcome to {workspace}</div>
+        <div className="askout_Header_input">Welcome to {workspace}</div>
 
       <div className="askout_Header_extra">
         <div className="askout_Header_avatar">

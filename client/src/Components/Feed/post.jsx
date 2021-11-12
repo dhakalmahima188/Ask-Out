@@ -1,31 +1,21 @@
 import { Avatar } from "@material-ui/core";
-import {
-  ArrowDownwardOutlined,
-  ArrowUpwardOutlined,
-  MoreHorizOutlined,
-} from "@material-ui/icons";
+// import { ArrowDownwardOutlined, ArrowUpwardOutlined } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import "./feed.css";
 import Modal from "react-modal";
 import httpClient from "../../Utils/httpClient";
-
 import "../Navbar/navbar.css";
-
 Modal.setAppElement("#root");
 
-function Post({ Id,key,id, question, timestamp ,replies}) {
+function Post({ Id, id, question, timestamp }) {
   const [username, setuser] = useState("");
   const [openModal, setOpenModal] = useState(false);
-//   const [answer, setAnswer] = useState("");
-// const answers=replies[0].replies
-  const [getAnswer, setGetAnswer] = useState([{replies}]);
-  console.log(getAnswer)
-//   console.log(replies[0])
-
-  const[getAnswervalue,setGetAnswervalue] = useState(false)
+  const [getAnswer, setGetAnswer] = useState([{}]);
+  const [view, setview] = useState(true);
+  const [fetch, setfetch] = useState(false);
   const defaultForm = {
     answer: "",
-     };
+  };
   const [data, setdata] = useState({
     ...defaultForm,
   });
@@ -43,7 +33,29 @@ function Post({ Id,key,id, question, timestamp ,replies}) {
         console.log(err);
       });
   }, [Id]);
-  
+  const viewAnswer = (id) => {
+    setview((prevview) => !prevview);
+    !fetch
+      ? httpClient
+          .PUT(
+            "question/answer/" + id,
+            {
+              answer: data.answer,
+              employee_name: localStorage.getItem("username"),
+            },
+            {}
+          )
+          .then((response) => {
+            getvalue(id);
+            setfetch(true);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      : view
+      ? getvalue(id)
+      : console.log("okay");
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setdata((preState) => ({
@@ -66,58 +78,46 @@ function Post({ Id,key,id, question, timestamp ,replies}) {
     setValid(errors.length === 0);
   };
   const handleAnswer = (id) => {
-    // e.preventDefault();
     httpClient
-    .PUT(
-      "question/answer/"+id,
-      {
-        answer: data.answer,
-      },
-      {}
-    )
-    .then((response) => {
-      setOpenModal(false);
-      getvalue(id)
-        })
-    .catch((err) => {
-      console.log(err);
-      setOpenModal(false);
-    });
+      .PUT(
+        "question/answer/" + id,
+        {
+          answer: data.answer,
+        },
+        {}
+      )
+      .then((response) => {
+        setOpenModal(false);
+        getvalue(id);
+      })
+      .catch((err) => {
+        console.log(err);
+        setOpenModal(false);
+      });
   };
   const getvalue = (id) => {
     httpClient
-    .GET("question/"+id, {})
-    .then((response) => {
-        console.log(response.data[0].replies)
+      .GET("question/" + id, {})
+      .then((response) => {
         setGetAnswer(response.data[0].replies);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-//   let ans=setGetAnswervalue?getAnswer:replies.replies
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   let btn = valid ? (
-    <button onClick={()=>handleAnswer(id)} type="sumbit" className="add">
-    Add Answer
-  </button>  ) : (
-    <button onClick={()=>handleAnswer(id)} type="sumbit" className="add">
-    Add Answer
-  </button>
+    <button onClick={() => handleAnswer(id)} type="sumbit" className="add">
+      Add Answer
+    </button>
+  ) : (
+    <button onClick={() => handleAnswer(id)} type="sumbit" className="add">
+      Add Answer
+    </button>
   );
   return (
-    <div
-      className="post"
-      // onClick = {() =>
-      // dispatch(
-      //     setQuestionInfo({
-      //         questionId: Id,
-      //         questionName: question,
-      //     })
-      // )}
-    >
+    <div className="post">
       <div className="post_info">
-        <Avatar
-        />
+        <Avatar />
         {username}
         <small>
           {new Date(timestamp).toLocaleDateString(undefined, {
@@ -156,11 +156,7 @@ function Post({ Id,key,id, question, timestamp ,replies}) {
             <div className="modal_question">
               <h1>{question}</h1>
               <p>
-                asked by{" "}
-                <span className="name">
-                 
-                </span>{" "}
-                on{" "}
+                asked by <span className="name"></span> on{" "}
                 <span className="name">
                   {new Date(timestamp).toLocaleDateString(undefined, {
                     year: "numeric",
@@ -171,17 +167,17 @@ function Post({ Id,key,id, question, timestamp ,replies}) {
               </p>
             </div>
             <div className="modal_answer">
-            <small
-            className="text-danger"
-            style={{
-              color: "red",
-            }}
-          >
-            {" "}
-            {error.answer}{" "}
-          </small>
+              <small
+                className="text-danger"
+                style={{
+                  color: "red",
+                }}
+              >
+                {" "}
+                {error.answer}{" "}
+              </small>
               <textarea
-                name='answer'
+                name="answer"
                 // value={answer}
                 onChange={handleChange}
                 placeholder="Enter Your Answer"
@@ -192,63 +188,47 @@ function Post({ Id,key,id, question, timestamp ,replies}) {
               <button className="cancel" onClick={() => setOpenModal(false)}>
                 Cancel
               </button>
-                            {btn}
+              {btn}
             </div>
           </Modal>
         </div>
         <div className="post_answer">
-        
-          {getAnswer.map((answers ) => (
-            <p key={answers._id} style={{ position: "relative", paddingBottom: "5px" }}>
-              {
-                  /* Id === answers.questionId ? ( */
-                <span>
-                  {answers.answer}
-                  <br />
-                  <span
-                    style={{
-                      position: "absolute",
-                      color: "gray",
-                      fontSize: "small",
-                      display: "flex",
-                      right: "0px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        color: "lightcoral",
-                      }}
-                    >
-                      {/* {answers.user.displayName
-                        ? answers.user.displayName
-                        : answers.user.email}{" "} */}
-                      {/* on{" "}
-                      {new Date(answers.timestamp?.toDate()).toLocaleString()} */}
-                    </span>
-                  </span>
-                </span>
-              /* ) : (
-                ""
-              ) */
-              }
-            </p>
-          ))}
+          {view
+            ? getAnswer.map((answers) => (
+                <p key={answers._id} style={{ position: "relative" }}>
+                  {
+                    <>
+                      <span>
+                        {answers.answer}
+
+                        <span
+                          style={{
+                            position: "absolute",
+                            color: "gray",
+                            fontSize: "small",
+                            // display: "flex",
+                            right: "0px",
+                            top: "-10px",
+                          }}
+                        >
+                          {" "}
+                          {answers.employee_name}{" "}
+                          {/* <ArrowUpwardOutlined />
+                              <ArrowDownwardOutlined /> */}
+                        </span>
+                      </span>
+                    </>
+                  }
+                </p>
+              ))
+            : ""}
         </div>
-        <img
-          // src={image}
-          alt=""
-        />
       </div>
 
       <div className="post_footer">
-        <div className="post_footerActions">
-          <ArrowUpwardOutlined />
-          <ArrowDownwardOutlined />
-        </div>
-
-        <div className="post_footerRight">
-          <MoreHorizOutlined />
-        </div>
+        <button onClick={() => viewAnswer(id)} type="sumbit" className="add">
+          View Answer
+        </button>
       </div>
     </div>
   );

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
 import httpClient from "../../../Utils/httpClient";
+import QuesBg from "../../../images/ques.jpg";
+import Add from "@material-ui/icons/Add";
 
 function Login(props) {
   const defaultForm = { username: "", password: "" };
@@ -68,12 +70,16 @@ function Login(props) {
       <div className="login_container">
         <div className="login_auth">
           <div className="login_authOptions">
-            <div className="login_authOption">
-              <Link to="/workspace" style={{ textDecoration: "none" }}>
-                {" "}
-                <small className="works-btn"> Create Workspace</small>
-              </Link>{" "}
-            </div>
+            <img
+              src={QuesBg}
+              alt="img"
+              height="400px"
+              style={{
+                backgroundRepeat: "no-repeat",
+                objectFit: "cover",
+                overflow: "hidden",
+              }}
+            />
           </div>
           <div className="login_emailPass">
             <div className="login_label">
@@ -89,9 +95,9 @@ function Login(props) {
                   onChange={handleChange}
                   type="text"
                   placeholder="Username"
+                  autocomplete="off"
                 />
               </div>
-
               <div className="login_inputField">
                 <small className="text-danger" style={{ color: "red" }}>
                   {error.password}
@@ -101,12 +107,17 @@ function Login(props) {
                   onChange={handleChange}
                   type="password"
                   placeholder="Password"
+                  autocomplete="off"
                 />
               </div>
-            </div>
-            <div className="login_forgot">
-              {/* <small>Forgot Password</small> */}
-              {btn}
+              <div className="login_btn">{btn}</div>
+              <Link to="/workspace" style={{ textDecoration: "none" }}>
+                {" "}
+                <div className="login_authOption">
+                  {" "}
+                  <Add /> Create Workspace
+                </div>{" "}
+              </Link>{" "}
             </div>
           </div>
         </div>

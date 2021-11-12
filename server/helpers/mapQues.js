@@ -8,5 +8,7 @@ module.exports = function (obj1, obj2) {
     if (obj2.likes) obj1.replies.likes = obj2.likes
     if (obj2.dislikes) obj1.replies.dislikes = obj2.dislikes
     if (obj2.workspace_id) obj1.workspace_id = obj2.workspace_id
+    if (obj2.employee_name) obj1.employee_name = obj2.employee_name
+
     return obj1;
 }
