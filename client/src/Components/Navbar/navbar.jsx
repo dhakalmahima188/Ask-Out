@@ -1,25 +1,26 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./navbar.css";
 import HomeIcon from "@material-ui/icons/Home";
-import FeaturedPlayListOutlinedIcon from "@material-ui/icons/FeaturedPlayListOutlined";
-import AssignmentTurnedInOutlinedIon from "@material-ui/icons/AssignmentTurnedInOutlined";
-import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
-import NotificationsOutlinedIcon from "@material-ui/icons/NotificationsOutlined";
-import SearchIcon from "@material-ui/icons/Search";
 import { Avatar, Button } from "@material-ui/core";
 import httpClient from "../../Utils/httpClient";
-// import "../css/Navbar.css";
-// import { useSelector } from 'react-redux';
-// import { selectUser } from '../features/userSlice';
-// import db, { auth } from '../firebase';
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import { Input } from "@material-ui/core";
 import { DataContext } from "../../Context/DataProvider";
-function Navbar(props) {
+function Navbar() {
   const { username, dataid } = useContext(DataContext);
   const [workspace, setworkspce] = useState("");
-
+  const defaultForm = {
+    description: "",
+    tag: "",
+  };
+  const [data, setdata] = useState({
+    ...defaultForm,
+  });
+  const [error, setError] = useState({
+    ...defaultForm,
+  });
+  const [valid, setValid] = useState(false);
   useEffect(() => {
     httpClient
       .GET("workspace/" + dataid, {})
@@ -34,32 +35,61 @@ function Navbar(props) {
   const logout = async () => {
     localStorage.clear();
     window.location.href = "/";
-
-    // history.push("/");
   };
-  // const user = useSelector(selectUser);
   const [openModal, setOpenModal] = useState(false);
-  const [input, setInput] = useState("");
-  const [inputUrl, setInputUrl] = useState("");
 
   const handleQuestion = (e) => {
     e.preventDefault();
-
-    setOpenModal(false);
-    setInput("");
-    setInputUrl("");
+    httpClient
+      .POST(
+        "question",
+        {
+          description: data.description,
+          workspace_id: dataid,
+          tag: data.tag,
+        },
+        {}
+      )
+      .then((response) => {
+        setOpenModal(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setOpenModal(false);
+      });
   };
-
-  // const  openNav = () => {
-  //     return(
-  //     document.getElementById("mySidenav").style.width = "250px"
-  //       )
-
-  //   }
-
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setdata((preState) => ({
+      ...preState,
+      [name]: value,
+    }));
+    let errorMsg;
+    switch (name) {
+      case "description":
+        errorMsg = data[name] ? "" : "Required field*";
+        break;
+      default:
+        break;
+    }
+    setError((preState) => ({
+      ...preState,
+      [name]: errorMsg,
+    }));
+    const errors = Object.values(error).filter((items) => items);
+    setValid(errors.length === 0);
+  };
+  let btn = valid ? (
+    <button onClick={handleQuestion} type="submit" className="add">
+      Add Question
+    </button>
+  ) : (
+    <button disabled onClick={handleQuestion} type="submit" className="add">
+      Add Question
+    </button>
+  );
   return (
     <div className="askout_Header">
-      {/* <button className="w3-button w3-teal w3-xlarge"  >&#9776;</button> */}
       <div className="askout_Header_logo">
         <h3>Ask-Out</h3>
       </div>
@@ -77,7 +107,8 @@ function Navbar(props) {
           {username}{" "}
         </div>
         <Link className="askout_Header_icon" to="/" onClick={logout}>
-     Logout   </Link>
+          Logout{" "}
+        </Link>
 
         <Button onClick={() => setOpenModal(true)}>Ask Questions</Button>
         <Modal
@@ -100,43 +131,43 @@ function Navbar(props) {
         >
           <div className="modal_title">
             <h5>Add Questions</h5>
-            <h5>Share Link</h5>
           </div>
           <div className="modal_info">
-            <Avatar
-              className="avatar"
-              // src={user.photo}
-            />
+            <Avatar className="avatar" />
             {username}
-            {/* <p>{user.displayName ? user.displayName : user.email} asked</p> */}
           </div>
 
           <div className="modal_field">
+            <small
+              className="text-danger"
+              style={{
+                color: "red",
+              }}
+            >
+              {" "}
+              {error.description}{" "}
+            </small>
             <Input
-              required
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={handleChange}
+              name="description"
+              // value={input}
               type="text"
               placeholder="Ask your question with 'What', 'How', 'Why', etc "
             />
-            {/* <div className="modal_fieldLink">
-                            <Link />
-                            <input
-                                value={inputUrl}
-                                onChange = {(e) => setInputUrl (e.target.value)}
-                                placeholder="Optional: include a link that gives context"
-                            >
-
-                            </input>
-                        </div> */}
+            <select name="tag" id="tag" onChange={handleChange}>
+              <option value="none" selected disabled hidden defaultValue>
+                Select a Tag{" "}
+              </option>{" "}
+              <option value="IT"> IT </option>{" "}
+              <option value="FINANCE"> FINANCE </option>{" "}
+              <option value="HR"> HR </option>{" "}
+            </select>
           </div>
           <div className="modal_buttons">
             <button onClick={() => setOpenModal(false)} className="cancel">
               Cancel
             </button>
-            <button onClick={handleQuestion} type="submit" className="add">
-              Add Question
-            </button>
+            {btn}
           </div>
         </Modal>
       </div>

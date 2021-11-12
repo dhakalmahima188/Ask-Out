@@ -1,32 +1,37 @@
-import React, { useEffect, useState } from 'react'
-import './feed.css'; 
-import AskoutBox from '../AskoutBox/askoutbox';
-import Post from './post.jsx';
+import React, { useEffect, useState, useContext } from "react";
+import "./feed.css";
+import Post from "./post.jsx";
+import httpClient from "../../Utils/httpClient";
+import { DataContext } from "../../Context/DataProvider";
 
 function Feed() {
-
-    const [posts, setPosts] = useState([])
-
-    
-    return (
-
-        <div className="feed">
-            <AskoutBox />
-            {/* {
-                posts.map(({id, question}) => (
-                    <Post 
-                        key = {id}
-                        Id = {id}
-                        image = {question.imageUrl}
-                        question = {question.question}
-                        timestamp = {question.timestamp}
-                        askoutUser = {question.user}
-                    />
-                ))
-            } */}
-        </div>
-        
-    );
+  const { dataid } = useContext(DataContext);
+  const [posts, setPosts] = useState([{}]);
+  useEffect(() => {
+    httpClient
+      .GET("question/work/" + dataid, {})
+      .then((response) => {
+        setPosts(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [dataid]);
+  console.log('post',posts);
+  return (
+    <div className="feed">
+      {posts.map((item) => (
+        <Post
+          id={item._id}
+          key={item._id}
+          Id={item.employee_id}
+          question={item.description}
+          timestamp={item.createdAt}
+          replies={item.replies}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default Feed;

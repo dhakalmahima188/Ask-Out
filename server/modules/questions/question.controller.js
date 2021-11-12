@@ -51,6 +51,27 @@ async function getQuesbyId(req, res, next) {
     });
 }
 
+async function getQuesbyWorkId(req, res, next) {
+  await quesmodel.find({
+      workspace_id: req.params.id,
+    }).sort({
+      _id: -1,
+    })
+    .exec(function (err, post) {
+      if (err) {
+        return next(err);
+      }
+      if (post) {
+        res.json(post);
+      } else {
+        next({
+          msg: "Questions not found",
+          status: 404,
+        });
+      }
+    });
+}
+
 async function updateQues(req, res, next) {
   await quesmodel.findById(req.params.id)
     .exec(async function (err, ques) {
@@ -124,10 +145,14 @@ async function postAnswer(req, res, next) {
             "employee_id": req.loggedInUser.id,
             "answer": req.body.answer
           }
-
         }
       })
-      res.status(200).json("You replied to this ques");
+      await quest.save(function (err, updated) {
+        if (err) {
+          return next(err);
+        }
+        res.json(updated);
+      });
     } else {
       next({
         msg: "Question not found",
@@ -266,5 +291,6 @@ module.exports = {
   deleteQues,
   postAnswer,
   likeanswer,
-  dislikeanswer
+  dislikeanswer,
+  getQuesbyWorkId
 }
