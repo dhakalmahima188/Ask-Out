@@ -5,6 +5,7 @@ import httpClient from "../../Utils/httpClient";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import { Input } from "@material-ui/core";
+import AlertDialog from "./addmember";
 import { DataContext } from "../../Context/DataProvider";
 function Navbar() {
   const { username, dataid } = useContext(DataContext);
@@ -92,7 +93,7 @@ function Navbar() {
       <div className="askout_Header_logo">
         <h3>Ask-Out</h3>
       </div>
-        <div className="askout_Header_input">Welcome to {workspace}</div>
+      <div className="askout_Header_input">Welcome to {workspace}</div>
 
       <div className="askout_Header_extra">
         <div className="askout_Header_avatar">
@@ -102,7 +103,7 @@ function Navbar() {
         <Link className="askout_Header_icon" to="/" onClick={logout}>
           Logout{" "}
         </Link>
-
+        <AlertDialog workspace={workspace}></AlertDialog>
         <Button onClick={() => setOpenModal(true)}>Ask Questions</Button>
         <Modal
           isOpen={openModal}

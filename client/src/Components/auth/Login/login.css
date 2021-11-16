@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 
-
-
 .login {
   display: flex;
   align-items: center;
@@ -15,7 +13,7 @@
   flex-direction: column;
   padding: 20px;
   width: 700px;
-  height:400px;
+  height: 400px;
   background-color: rgb(255, 255, 255);
   border-radius: 30px;
 }
@@ -62,7 +60,7 @@
   align-items: center;
   padding: 7px;
   width: 100%;
-  margin-top:30px;
+  margin-top: 30px;
   height: 300px;
 }
 
@@ -153,16 +151,17 @@
   text-align: center;
 }
 
-.login_btn >button{
-  color:white;
-  background-color:blue;
+.login_btn > button {
+  color: white;
+  background-color: blue;
   border-radius: 5% !important;
-  padding:3px;
+  padding: 3px;
   justify-content: center;
   align-items: center;
-  height:38px;
-  margin-left:40%;
-  width:100px;
+  height: 38px;
+  margin-left: 35%;
+  width: 100px;
+  margin-top: 10px;
 }
 .login_emailPass > button {
   padding: 9px;
