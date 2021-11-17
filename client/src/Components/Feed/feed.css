@@ -9,6 +9,7 @@
   padding: 10px;
   background-color: white;
   border: 1px solid lightgray;
+  background-color:#e9e3de;
   border-radius: 5px;
   margin-top: 10px;
 }
@@ -193,4 +194,11 @@
 }
 .post_btnAnswer{
 background-color: #554d5e;
+}
+.view-ans-btn{
+  border: none;
+  border-radius: 5px;
+  background:rgb(7, 122, 168);
+  color:white;
+  height:30px;
 }

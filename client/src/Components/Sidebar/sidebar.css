@@ -3,8 +3,10 @@
     flex: 0.2;
 }
 .sidebarOptions {
+    margin-top:10px;
     display: flex;
     flex-direction: column;
+    background:rgb(138, 134, 134)
 }
 
 .sidebarOption {
@@ -12,13 +14,21 @@
     align-items: center;
     padding: 10px;
     cursor: pointer;
+   
 }
 
 .sidebarOption:hover {
     background-color: lightgray;
     border-radius: 5px;
 }
-
+.sidebarOptionActive{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: lightgray;
+}
 .sidebarOption > img {
     height: 30px;
     margin-left: 20px;
