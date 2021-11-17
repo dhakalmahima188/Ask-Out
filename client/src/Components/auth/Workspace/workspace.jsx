@@ -97,16 +97,18 @@ function Workspace(props) {
     )
   ) : (
     <>
-      <div className="login_desc">
+      <div className="workspace_desc">
         <Link to="/">Go Back</Link>
         <p>Register Your Workplace</p>
       </div>
       <div className="login_authOptions">
-        <h3>Enter the name of your Workplace</h3>
-        <div className="login_inputFields">
-          <input name="name" onChange={handleWorkChange} />
+        <div className="name">
+        <h3>Name:</h3>
         </div>
-        <button onClick={handleSubmit}>Create</button>
+        <div className="workspace_inputFields">
+          <input name="name" onChange={handleWorkChange}  />
+        </div>
+        <button className="buttons" onClick={handleSubmit}>Create</button>
       </div>
       <br />
     </>
