@@ -3,11 +3,12 @@ import Add from "@material-ui/icons/Add";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import httpClient from "../../../Utils/httpClient";
+import email_image from "./email.png";
 function Workspace(props) {
   const [data, setdata] = useState({ name: "" });
   const [inputList, setInputList] = useState([{ email: "" }]);
-  const [created_workspace, setCreate] = useState(false);
-  const [msg, setMsg] = useState(false);
+  const [created_workspace, setCreate] = useState(true);
+  const [msg, setMsg] = useState(true);
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...inputList];
@@ -57,21 +58,25 @@ function Workspace(props) {
   };
   let content = created_workspace ? (
     !msg ? (
-      <>
-        <div className="login_emailPass">
-          <div className="login_inputField">
+      < div className="workspace">
+       <div className="workspace_desc">
+                    <p>Enter Your Emails</p>
+                    </div>
+        <div className="workspace-email">
+          <div className="workspace-inputs">
             {inputList.map((x, i) => {
               return (
                 <>
                   {" "}
-                  <h3>{i === 0 ? "Enter your email" : `Teammate ${i}`}</h3>
-                  <div className="login_inputField">
+                 
+                  {/* <h5>{i === 0 ? "Your email" : `Teammate ${i}`}</h5> */}
+                  <div className="workspace-input">
                     <input
                       name="email"
                       placeholder={
                         i === 0
-                          ? "Enter your email"
-                          : `Enter your teammate's email`
+                          ? "Your Email"
+                          : `Email of Teammate ${i}`
                       }
                       variant="filled"
                       value={x.email}
@@ -79,10 +84,12 @@ function Workspace(props) {
                     />
                   </div>
                   {inputList.length - 1 === i && (
-                    <button onClick={handleAddClick}>
+                    <button className="workspace-add" onClick={handleAddClick}>
                       {" "}
-                      Click to add people
+                   
+                     Add
                       <Add />
+                  
                     </button>
                   )}
                 </>
@@ -90,10 +97,14 @@ function Workspace(props) {
             })}
           </div>
         </div>
-        <button onClick={handleSend}> Submit</button>
-      </>
+        <button onClick={handleSend} className="buttons"> Submit</button>
+      </div>
     ) : (
-      <h3>Please Check Your Email!!</h3>
+      <div className="check">
+      <h3>Please Check Your Email !!</h3>
+      <img src={email_image} height="300px" width="300px" alt="question" />
+    
+      </div>
     )
   ) : (
     <>

@@ -1,4 +1,13 @@
+.register-form {
+  background-color: rgb(173, 119, 243);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  border-radius: 5px;
 
+  
+}
 .register {
   background-color:  rgb(173, 119, 243);
   display: flex;
@@ -27,7 +36,8 @@
 
 
 .buttons{
-  align-self: center;
+  margin-left: 250px;
+
 margin-top:20px;
     border-radius: 20px;
     background-color:rgb(241, 86, 86);
@@ -44,3 +54,43 @@ margin-top:20px;
     font-family:sans-serif;
 
   }
+
+  .workspace-input >input{
+    font-size: 15px;
+    height: 40px;
+    width:675px;
+    border-radius: 5px;
+    background-color: rgb(233, 250, 202);
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 5px;
+    outline: none;
+  border: none;
+  }
+.workspace-add{
+
+  margin-top:20px;
+      border-radius: 5px;
+      background-color:rgb(86, 241, 107);
+      cursor: pointer;
+      height:35px;
+      width: 67px;
+    
+      font-size: 15px;
+      outline: none;
+      border: none;
+
+}
+.check{
+  display:flex;
+  justify-content: center;
+  margin-top: 20px;
+
+}
+.check >h3{
+  margin-top: 150px;
+
+  margin-right: 30px;
+  font-size: 30px;
+
+ 
+}
