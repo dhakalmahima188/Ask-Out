@@ -226,7 +226,7 @@ function Post({ Id, id, question, timestamp }) {
       </div>
 
       <div className="post_footer">
-        <button onClick={() => viewAnswer(id)} type="sumbit" className="add">
+        <button onClick={() => viewAnswer(id)} type="sumbit" className="view-ans-btn">
           View Answer
         </button>
       </div>

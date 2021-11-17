@@ -62,7 +62,7 @@ function Login(props) {
     <button onClick={submits}>Submit</button>
   ) : (
     <button disabled onClick={submits}>
-      Click
+      Login
     </button>
   );
   return (
@@ -112,12 +112,12 @@ function Login(props) {
               </div>
               <div className="login_btn">{btn}</div>
               <Link to="/workspace" style={{ textDecoration: "none" }}>
-                {" "}
+              
                 <div className="login_authOption">
-                  {" "}
+                
                   <Add /> Create Workspace
-                </div>{" "}
-              </Link>{" "}
+                </div>
+              </Link>
             </div>
           </div>
         </div>

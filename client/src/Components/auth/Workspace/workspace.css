@@ -5,11 +5,9 @@
   justify-content: center;
   height: 100vh;
   border-radius: 5px;
-
-  
 }
 .register {
-  background-color:  rgb(173, 119, 243);
+  background-color: rgb(173, 119, 243);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,74 +21,63 @@
   margin-bottom: 40px;
 }
 
-
 .workspace_inputFields > input {
   font-size: 20px;
   height: 40px;
-  width:675px;
+  width: 675px;
   border-radius: 5px;
   background-color: rgb(233, 250, 202);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
-
-.buttons{
+.buttons {
   margin-left: 250px;
 
-margin-top:20px;
-    border-radius: 20px;
-    background-color:rgb(241, 86, 86);
-    cursor: pointer;
-    height: 35px;
-    width: 200px;
-    color:rgb(238, 237, 211);
-    font-size: 15px;
-  
-   
-  }
-  .name > h3{
-    margin-left: 6px;
-    font-family:sans-serif;
-
-  }
-
-  .workspace-input >input{
-    font-size: 15px;
-    height: 40px;
-    width:675px;
-    border-radius: 5px;
-    background-color: rgb(233, 250, 202);
-    font-family: Arial, Helvetica, sans-serif;
-    margin-bottom: 5px;
-    outline: none;
-  border: none;
-  }
-.workspace-add{
-
-  margin-top:20px;
-      border-radius: 5px;
-      background-color:rgb(86, 241, 107);
-      cursor: pointer;
-      height:35px;
-      width: 67px;
-    
-      font-size: 15px;
-      outline: none;
-      border: none;
-
+  margin-top: 20px;
+  border-radius: 20px;
+  background-color: rgb(241, 86, 86);
+  cursor: pointer;
+  height: 35px;
+  width: 200px;
+  color: rgb(238, 237, 211);
+  font-size: 15px;
 }
-.check{
-  display:flex;
+.name > h3 {
+  margin-left: 6px;
+  font-family: sans-serif;
+}
+
+.workspace-input > input {
+  font-size: 15px;
+  height: 40px;
+  width: 675px;
+  border-radius: 5px;
+  background-color: rgb(233, 250, 202);
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 5px;
+  outline: none;
+  border: none;
+}
+.workspace-add {
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: rgb(86, 241, 107);
+  cursor: pointer;
+  height: 35px;
+  width: 67px;
+
+  font-size: 15px;
+  outline: none;
+  border: none;
+}
+.check {
+  display: flex;
   justify-content: center;
   margin-top: 20px;
-
 }
-.check >h3{
+.check > h3 {
   margin-top: 150px;
 
   margin-right: 30px;
   font-size: 30px;
-
- 
 }
