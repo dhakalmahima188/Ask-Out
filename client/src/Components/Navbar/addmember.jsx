@@ -12,7 +12,6 @@ export default function AlertDialog(props) {
   const [open, setOpen] = useState(false);
   const [inputList, setInputList] = useState([{ email: "" }]);
 
-  const [isSending] = useState(true);
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...inputList];

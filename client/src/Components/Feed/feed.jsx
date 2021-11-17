@@ -5,9 +5,19 @@ import httpClient from "../../Utils/httpClient";
 import { DataContext } from "../../Context/DataProvider";
 
 function Feed() {
-  const { dataid } = useContext(DataContext);
-  const [posts, setPosts] = useState([{}]);
+  const { dataid,tag,tagvalue } = useContext(DataContext);
+   const [posts, setPosts] = useState([{}]);
   useEffect(() => {
+    tagvalue?  
+    httpClient
+      .POST("question/tag/" + dataid,{tag:tag.tag}, {})
+      .then((response) => {
+        setPosts(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  :
     httpClient
       .GET("question/work/" + dataid, {})
       .then((response) => {
@@ -16,7 +26,7 @@ function Feed() {
       .catch((err) => {
         console.log(err);
       });
-  }, [dataid]);
+  }, [dataid,tagvalue,tag]);
   return (
     <div className="feed">
       {posts.map((item) => (

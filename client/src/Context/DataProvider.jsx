@@ -4,16 +4,13 @@ export const DataContext = createContext(null);
 
 const DataProvider = ({ children }) => {
   const [dataid, setdataid] = useState("");
-
+  const [tag, settag] = useState("");
+  const [tagvalue, settagvalue] = useState(false);
   useEffect(() => {
     httpClient
-      .POST(
-        "employee/name",
-        { username: localStorage.getItem("username") },
-        {}
-      )
+      .POST("employee/name", { username: localStorage.getItem("username") }, {})
       .then((response) => {
-        setdataid(response.data.workspace_id);       
+        setdataid(response.data.workspace_id);
       })
       .catch((err) => {
         console.log(err);
@@ -21,7 +18,9 @@ const DataProvider = ({ children }) => {
   }, []);
   const [username] = useState(localStorage.getItem("username"));
   return (
-    <DataContext.Provider value={{ username,dataid}}>
+    <DataContext.Provider
+      value={{ username, dataid, tag, settag, tagvalue, settagvalue }}
+    >
       {children}
     </DataContext.Provider>
   );

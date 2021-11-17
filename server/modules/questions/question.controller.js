@@ -31,6 +31,25 @@ async function getQues(req, res, next) {
       }
     });
 }
+async function getQuesbyTag(req, res, next) {
+  await quesmodel.find({
+      workspace_id: req.params.id,
+      tag: req.body.tag
+    })
+    .exec(function (err, post) {
+      if (err) {
+        return next(err);
+      }
+      if (post) {
+        res.json(post);
+      } else {
+        next({
+          msg: "Questions not found",
+          status: 404,
+        });
+      }
+    });
+}
 
 async function getQuesbyId(req, res, next) {
   await quesmodel.find({
@@ -144,7 +163,7 @@ async function postAnswer(req, res, next) {
           "replies": {
             "employee_id": req.loggedInUser.id,
             "answer": req.body.answer,
-            "employee_name":req.body.employee_name
+            "employee_name": req.body.employee_name
           }
         }
       })
@@ -293,5 +312,6 @@ module.exports = {
   postAnswer,
   likeanswer,
   dislikeanswer,
-  getQuesbyWorkId
+  getQuesbyWorkId,
+  getQuesbyTag
 }
