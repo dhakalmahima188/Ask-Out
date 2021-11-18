@@ -5,28 +5,27 @@ import httpClient from "../../Utils/httpClient";
 import { DataContext } from "../../Context/DataProvider";
 
 function Feed() {
-  const { dataid,tag,tagvalue } = useContext(DataContext);
-   const [posts, setPosts] = useState([{}]);
+  const { dataid, tag, tagvalue } = useContext(DataContext);
+  const [posts, setPosts] = useState([{}]);
   useEffect(() => {
-    tagvalue?  
-    httpClient
-      .POST("question/tag/" + dataid,{tag:tag.tag}, {})
-      .then((response) => {
-        setPosts(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  :
-    httpClient
-      .GET("question/work/" + dataid, {})
-      .then((response) => {
-        setPosts(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [dataid,tagvalue,tag]);
+    tagvalue
+      ? httpClient
+          .POST("question/tag/" + dataid, { tag: tag.tag }, {})
+          .then((response) => {
+            setPosts(response.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      : httpClient
+          .GET("question/work/" + dataid, {})
+          .then((response) => {
+            setPosts(response.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+  }, [dataid, tagvalue, tag]);
   return (
     <div className="feed">
       {posts.map((item) => (
@@ -35,6 +34,7 @@ function Feed() {
           Id={item.employee_id}
           question={item.description}
           timestamp={item.createdAt}
+          state={item.ques_state}
         />
       ))}
     </div>

@@ -112,9 +112,7 @@ function Login(props) {
               </div>
               <div className="login_btn">{btn}</div>
               <Link to="/workspace" style={{ textDecoration: "none" }}>
-              
                 <div className="login_authOption">
-                
                   <Add /> Create Workspace
                 </div>
               </Link>

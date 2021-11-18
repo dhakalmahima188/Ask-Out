@@ -1,5 +1,4 @@
 import { Avatar } from "@material-ui/core";
-// import { ArrowDownwardOutlined, ArrowUpwardOutlined } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import "./feed.css";
 import Modal from "react-modal";
@@ -7,12 +6,14 @@ import httpClient from "../../Utils/httpClient";
 import "../Navbar/navbar.css";
 Modal.setAppElement("#root");
 
-function Post({ Id, id, question, timestamp }) {
+function Post({ Id, id, question, timestamp, state }) {
   const [username, setuser] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [getAnswer, setGetAnswer] = useState([{}]);
   const [view, setview] = useState(true);
   const [fetch, setfetch] = useState(false);
+  const [likecount, setlikecount] = useState(false);
+  const [isactive, setactive] = useState(true);
   const defaultForm = {
     answer: "",
   };
@@ -23,6 +24,7 @@ function Post({ Id, id, question, timestamp }) {
     ...defaultForm,
   });
   const [valid, setValid] = useState(false);
+  //to fetch username
   useEffect(() => {
     httpClient
       .GET("employee/" + Id, {})
@@ -33,18 +35,13 @@ function Post({ Id, id, question, timestamp }) {
         console.log(err);
       });
   }, [Id]);
+
+  //for view answer
   const viewAnswer = (id) => {
     setview((prevview) => !prevview);
     !fetch
       ? httpClient
-          .PUT(
-            "question/answer/" + id,
-            {
-              answer: data.answer,
-              employee_name: localStorage.getItem("username"),
-            },
-            {}
-          )
+          .GET("question/" + id, {})
           .then((response) => {
             getvalue(id);
             setfetch(true);
@@ -56,6 +53,7 @@ function Post({ Id, id, question, timestamp }) {
       ? getvalue(id)
       : console.log("okay");
   };
+  //handling answers
   const handleChange = (e) => {
     const { name, value } = e.target;
     setdata((preState) => ({
@@ -77,6 +75,8 @@ function Post({ Id, id, question, timestamp }) {
     const errors = Object.values(error).filter((items) => items);
     setValid(errors.length === 0);
   };
+
+  //submit answer
   const handleAnswer = (id) => {
     httpClient
       .PUT(
@@ -100,6 +100,32 @@ function Post({ Id, id, question, timestamp }) {
       .GET("question/" + id, {})
       .then((response) => {
         setGetAnswer(response.data[0].replies);
+        setlikecount(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //for like/dislike
+  const handleClick = (id, answers, i) => {
+    httpClient
+      .PUT("question/answer/like/" + id, { id: answers }, {})
+      .then((response) => {
+        setlikecount(true);
+        getvalue(id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //active/close
+  const activation = (e) => {
+    httpClient
+      .PUT("question/" + id, { ques_state: "Closed" }, {})
+      .then((response) => {
+        setactive(false);
       })
       .catch((err) => {
         console.log(err);
@@ -118,7 +144,7 @@ function Post({ Id, id, question, timestamp }) {
     <div className="post">
       <div className="post_info">
         <Avatar />
-        {username}
+        &nbsp; {username}
         <small>
           {new Date(timestamp).toLocaleDateString(undefined, {
             year: "numeric",
@@ -126,14 +152,28 @@ function Post({ Id, id, question, timestamp }) {
             day: "numeric",
           })}
         </small>
+        <button onClick={() => activation(id)} className="post_btnClose">
+          {state}{" "}
+        </button>
       </div>
 
       <div className="post_body">
         <div className="post_question">
           <p>{question}</p>
-          <button onClick={() => setOpenModal(true)} className="post_btnAnswer">
-            Answer
-          </button>
+
+          {state === "Active" ? (
+            <button
+              onClick={() => setOpenModal(true)}
+              className="post_btnAnswer"
+            >
+              Answer
+            </button>
+          ) : (
+            <button
+              className="post_btnAnswer"
+              style={{ backgroundColor: "#e9e3de" }}
+            ></button>
+          )}
 
           <Modal
             isOpen={openModal}
@@ -154,7 +194,7 @@ function Post({ Id, id, question, timestamp }) {
             }}
           >
             <div className="modal_question">
-              <h1>{question}</h1>
+              <h6>{question}</h6>
               <p>
                 asked by <span className="name"></span> on{" "}
                 <span className="name">
@@ -193,30 +233,52 @@ function Post({ Id, id, question, timestamp }) {
           </Modal>
         </div>
         <div className="post_answer">
+          <hr />
           {view
-            ? getAnswer.map((answers) => (
+            ? getAnswer.map((answers, i) => (
                 <p key={answers._id} style={{ position: "relative" }}>
                   {
                     <>
-                      <span>
-                        {answers.answer}
+                      {" "}
+                      {i === 0 ? (
+                        ""
+                      ) : (
+                        <span>
+                          <h3 style={{ fontSize: "15px" }}>{answers.answer}</h3>
 
-                        <span
-                          style={{
-                            position: "absolute",
-                            color: "gray",
-                            fontSize: "small",
-                            // display: "flex",
-                            right: "0px",
-                            top: "-10px",
-                          }}
-                        >
-                          {" "}
-                          {answers.employee_name}{" "}
-                          {/* <ArrowUpwardOutlined />
-                              <ArrowDownwardOutlined /> */}
+                          <span
+                            style={{
+                              position: "absolute",
+                              color: "gray",
+                              fontSize: "small",
+                              right: "0px",
+                              top: "-5px",
+                            }}
+                          >
+                            <div>
+                              <span className="thumbup">
+                                <span class="text3">
+                                  {answers.employee_name}
+                                </span>
+                                &nbsp;{" "}
+                                <i
+                                  className="fa fa-thumbs-o-up"
+                                  onClick={() =>
+                                    handleClick(id, answers._id, i)
+                                  }
+                                ></i>
+                                {""}
+                              </span>
+                              <span className="text4">
+                                &nbsp;{" "}
+                                {answers.likes.length === 0
+                                  ? ""
+                                  : answers.likes.length}
+                              </span>
+                            </div>
+                          </span>
                         </span>
-                      </span>
+                      )}
                     </>
                   }
                 </p>
@@ -226,7 +288,11 @@ function Post({ Id, id, question, timestamp }) {
       </div>
 
       <div className="post_footer">
-        <button onClick={() => viewAnswer(id)} type="sumbit" className="view-ans-btn">
+        <button
+          onClick={() => viewAnswer(id)}
+          type="sumbit"
+          className="view-ans-btn"
+        >
           View Answer
         </button>
       </div>

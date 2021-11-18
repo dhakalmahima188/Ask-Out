@@ -2,8 +2,9 @@ import React, { useState, useContext, useEffect } from "react";
 import "./navbar.css";
 import { Avatar, Button } from "@material-ui/core";
 import httpClient from "../../Utils/httpClient";
+import HomeIcon from "@material-ui/icons/Home";
+
 import Modal from "react-modal";
-import { Link } from "react-router-dom";
 import { Input } from "@material-ui/core";
 import AlertDialog from "./addmember";
 import { DataContext } from "../../Context/DataProvider";
@@ -91,18 +92,21 @@ function Navbar() {
   return (
     <div className="askout_Header">
       <div className="askout_Header_logo">
-        <h3>Ask-Out</h3>
+        <h3>AskOut</h3>
       </div>
-      <div className="askout_Header_input">Welcome to {workspace}</div>
+      <div className="askout_Header_icons">
+        <div className="askout_Header_icon">
+          <HomeIcon />
+          <p style={{ marginTop: "-10px" }}>{workspace}</p>
+        </div>
+      </div>
 
       <div className="askout_Header_extra">
         <div className="askout_Header_avatar">
           <Avatar />
           {username}{" "}
         </div>
-        <Link className="askout_Header_icon" to="/" onClick={logout}>
-          Logout{" "}
-        </Link>
+
         <AlertDialog workspace={workspace}></AlertDialog>
         <Button onClick={() => setOpenModal(true)}>Ask Questions</Button>
         <Modal
@@ -128,7 +132,7 @@ function Navbar() {
           </div>
           <div className="modal_info">
             <Avatar className="avatar" />
-            {username}
+            &nbsp; {username}
           </div>
 
           <div className="modal_field">
@@ -147,8 +151,14 @@ function Navbar() {
               // value={input}
               type="text"
               placeholder="Ask your question with 'What', 'How', 'Why', etc "
+              autocomplete="off"
             />
-            <select name="tag" id="tag" onChange={handleChange}>
+            <select
+              name="tag"
+              id="tag"
+              onChange={handleChange}
+              className="selecttag"
+            >
               <option value="none" selected disabled hidden defaultValue>
                 Select a Tag{" "}
               </option>{" "}
@@ -164,6 +174,9 @@ function Navbar() {
             {btn}
           </div>
         </Modal>
+        <button className="post_btnAnswer" onClick={logout}>
+          Logout{" "}
+        </button>
       </div>
     </div>
   );

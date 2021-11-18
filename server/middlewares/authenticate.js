@@ -16,7 +16,6 @@ module.exports = function (req, res, next) {
             if (err) {
                 return next(err);
             }
-            console.log('decoded value >>', decoded);
             UserModel.findById(decoded._id, function (err, user) {
                 if (err) {
                     return next(err);

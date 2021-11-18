@@ -213,14 +213,8 @@ async function likeanswer(req, res, next) {
               user: req.loggedInUser.id
             }
           }
-        }, {
-          $pull: {
-            "replies.$.dislikes": {
-              user: req.loggedInUser.id
-            }
-          }
         })
-        res.status(200).json("You liked this answer");
+        res.status(200).json(question);
       } else {
         await quesmodel.updateOne({
           _id: req.params.id,
@@ -232,7 +226,7 @@ async function likeanswer(req, res, next) {
             }
           }
         })
-        res.status(200).json("Like undo");
+        res.status(200).json(question);
       }
     } else {
       next({
@@ -242,67 +236,7 @@ async function likeanswer(req, res, next) {
     }
   })
 }
-async function dislikeanswer(req, res, next) {
-  await quesmodel.findById(req.params.id).exec(async function (err, question) {
-    if (err) {
-      return next(err)
-    }
-    if (question) {
-      const check = await quesmodel.findOne({
-        "$and": [{
-            _id: req.params.id
-          },
-          {
-            "replies._id": req.body.id
-          }, {
-            "replies.dislikes": {
-              $elemMatch: {
-                user: req.loggedInUser.id
-              }
-            }
-          }
-        ]
-      })
-      if (!check) {
-        await quesmodel.updateOne({
-          _id: req.params.id,
-          "replies._id": req.body.id
-        }, {
-          $push: {
-            "replies.$.dislikes": {
-              user: req.loggedInUser.id
-            }
-          }
-        }, {
-          $pull: {
-            "replies.$.likes": {
-              user: req.loggedInUser.id
-            }
 
-          }
-        })
-        res.status(200).json("You disliked this answer");
-      } else {
-        await quesmodel.updateOne({
-          _id: req.params.id,
-          "replies._id": req.body.id
-        }, {
-          $pull: {
-            "replies.$.dislikes": {
-              user: req.loggedInUser.id
-            }
-          }
-        })
-        res.status(200).json("Dislike undo");
-      }
-    } else {
-      next({
-        msg: "Question not found",
-        status: 404,
-      });
-    }
-  })
-}
 module.exports = {
   createQues,
   getQues,
@@ -311,7 +245,6 @@ module.exports = {
   deleteQues,
   postAnswer,
   likeanswer,
-  dislikeanswer,
   getQuesbyWorkId,
-  getQuesbyTag
+  getQuesbyTag,
 }

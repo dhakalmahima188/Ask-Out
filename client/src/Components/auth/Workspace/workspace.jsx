@@ -79,6 +79,7 @@ function Workspace(props) {
                         variant="filled"
                         value={x.email}
                         onChange={(e) => handleInputChange(e, i)}
+                        autocomplete="off"
                       />
                     </div>
                     {inputList.length - 1 === i && (
@@ -117,7 +118,7 @@ function Workspace(props) {
       <div className="login_authOptions">
         <h3>Enter the name of your Workplace</h3>
         <div className="workspace_inputFields">
-          <input name="name" onChange={handleWorkChange} />
+          <input name="name" onChange={handleWorkChange} autocomplete="off" />
         </div>
         <button className="buttons" onClick={handleSubmit}>
           Create

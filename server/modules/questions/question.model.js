@@ -10,18 +10,13 @@ const QuestionSchema = new Schema({
         "employee_id": {
             type: String,
         },
-        "employee_name":{
-            type:String,
+        "employee_name": {
+            type: String,
         },
         "answer": {
             type: String,
         },
         "likes": [{
-            user: {
-                type: String,
-            }
-        }],
-        "dislikes": [{
             user: {
                 type: String,
             }
@@ -41,7 +36,7 @@ const QuestionSchema = new Schema({
     "ques_state": {
         type: String,
         default: "Active",
-        enum: ['Active', 'Close']
+        enum: ['Active', 'Closed']
     },
     "workspace_id": {
         type: String,

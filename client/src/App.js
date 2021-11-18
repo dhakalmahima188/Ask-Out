@@ -4,11 +4,9 @@ import AppRouting from "./app.routing";
 import DataProvider from "./Context/DataProvider";
 function App() {
   return (
-    
     <DataProvider>
       <AppRouting />
-      </DataProvider>
-    
+    </DataProvider>
   );
 }
 

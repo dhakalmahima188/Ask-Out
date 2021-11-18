@@ -9,7 +9,7 @@
   padding: 10px;
   background-color: white;
   border: 1px solid lightgray;
-  background-color:#e9e3de;
+  background-color: #e9e3de;
   border-radius: 5px;
   margin-top: 10px;
 }
@@ -72,35 +72,20 @@
   cursor: pointer;
   transform: scale(1.1);
 }
-/* 
-.post_footer {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
+.post_btnClose {
+  margin-left: 520px;
+  outline: none;
+  border: none;
+  background-color: rgb(70, 124, 77);
+  color: white;
+  border-radius: 30px;
+  margin-right: -200px;
 }
-.post_footer > .MuiSvgIcon-root {
-  color: #554d5e;
-  margin-right: 40px;
+.post_btnClose:hover {
   cursor: pointer;
+  transform: scale(1.1);
+  background-color: rgb(7, 123, 23);
 }
-.post_footerActions {
-  display: flex;
-  justify-content: space-around;
-  border-radius: 33px;
-  padding: 5px;
-  background-color: lightgray;
-  align-items: center;
-}
-.post_footerActions > .MuiSvgIcon-root {
-  color: #554d5e;
-  margin-right: 40px;
-  cursor: pointer;
-}
-.post_footerActions > .MuiSvgIcon-root:hover {
-  color: lightcoral;
-  margin-right: 40px;
-  cursor: pointer;
-} */
 
 .post_footerRight {
   margin-left: auto;
@@ -188,13 +173,34 @@
 .modal_button > .add:hover {
   transform: scale(1.1);
 }
-.post_btnAnswer{
-background-color: #554d5e;
+.post_btnAnswer {
+  background-color: #554d5e;
 }
-.view-ans-btn{
+.view-ans-btn {
   border: none;
   border-radius: 5px;
-  background:rgb(7, 122, 168);
-  color:white;
-  height:30px;
+  background: rgb(7, 122, 168);
+  color: white;
+  height: 30px;
 }
+.thumbup {
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 5px
+}
+
+.thumbupo {
+  color: #17a2b8
+}
+.text4 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #828386
+}
+.text3{
+  font-size: 15px;
+  font-weight: 500;
+  margin-right: 4px;
+  color: #000000
+}
+

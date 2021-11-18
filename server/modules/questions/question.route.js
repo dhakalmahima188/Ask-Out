@@ -6,7 +6,5 @@ QuesRouter.route("/:id").get(QuesCtrl.getQuesbyId).put(QuesCtrl.updateQues).dele
 QuesRouter.route("/tag/:id").post(QuesCtrl.getQuesbyTag)
 QuesRouter.route("/answer/:id").put(QuesCtrl.postAnswer)
 QuesRouter.route("/answer/like/:id").put(QuesCtrl.likeanswer)
-QuesRouter.route("/answer/dislike/:id").put(QuesCtrl.dislikeanswer)
-QuesRouter.route("/answer/dislike/:id").put(QuesCtrl.dislikeanswer)
 QuesRouter.route("/work/:id").get(QuesCtrl.getQuesbyWorkId)
 module.exports = QuesRouter

@@ -4,7 +4,6 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Add from "@material-ui/icons/Add";
 import httpClient from "../../Utils/httpClient";
 
@@ -58,17 +57,15 @@ export default function AlertDialog(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{props.workspace}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <>
-              <div className="login_emailPass">
-                <div className="login_inputField">
+              <div className="workspace-email">
+                <div className="workspace-inputs">
                   {inputList.map((x, i) => {
                     return (
                       <>
                         {" "}
-                        <h3>Enter email</h3>
                         <div className="login_inputField">
                           <input
                             name="email"
@@ -76,12 +73,16 @@ export default function AlertDialog(props) {
                             variant="filled"
                             value={x.email}
                             onChange={(e) => handleInputChange(e, i)}
+                            autocomplete="off"
                           />
                         </div>
                         {inputList.length - 1 === i && (
-                          <button onClick={handleAddClick}>
+                          <button
+                            className="workspace-add"
+                            onClick={handleAddClick}
+                          >
                             {" "}
-                            Click to add people
+                            Add
                             <Add />
                           </button>
                         )}
