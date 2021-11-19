@@ -7,4 +7,4 @@
 * [Express.js](https://expressjs.com/en/4x/api) - Web aplication framework
 * [React.js](https://reactjs.org/docs/) - JavaScript library for building user interfaces
 * [NodeJS](https://docs.mongodb.com/) -  JavaScript runtime environment
-* [Material-Ui](https://material-ui.com/) - React javascript material-design library
+
