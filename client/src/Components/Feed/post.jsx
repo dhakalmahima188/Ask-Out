@@ -83,6 +83,7 @@ function Post({ Id, id, question, timestamp, state }) {
         "question/answer/" + id,
         {
           answer: data.answer,
+          employee_name:localStorage.getItem("username")
         },
         {}
       )
