@@ -3,8 +3,8 @@
 
 ## Built With
 
-* [MongoDB](https://nodejs.org/en/docs/) - Database engine
+* [MongoDB](https://docs.mongodb.com/) - Database engine
 * [Express.js](https://expressjs.com/en/4x/api) - Web aplication framework
 * [React.js](https://reactjs.org/docs/) - JavaScript library for building user interfaces
-* [NodeJS](https://docs.mongodb.com/) -  JavaScript runtime environment
+* [NodeJS](https://nodejs.org/en/docs/) -  JavaScript runtime environment
 
